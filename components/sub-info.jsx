@@ -16,6 +16,7 @@ const SubInfo = () => {
         {[assets.person02, assets.person03, assets.person04].map(
           (person, index) => (
             <Image
+            key={person}
               source={person}
               resizeMode="contain"
               style={{

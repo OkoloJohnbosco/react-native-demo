@@ -1,15 +1,15 @@
 import {
   StyleSheet,
-  Text,
   View,
   SafeAreaView,
   FlatList,
-  StatusBar,
+  // StatusBar,
 } from "react-native";
 import React from "react";
 import { COLORS, NFTData } from "../constants";
 import FocusedStatusBar from "../components/focused-status-bar";
 import NFTCard from "../components/nft-card";
+import HomeHeader from "../components/home-header";
 
 const Home = () => {
   return (
@@ -22,7 +22,7 @@ const Home = () => {
             renderItem={({ item }) => <NFTCard {...item} />}
             keyExtractor={(item) => item.id}
             showsVerticalScrollIndicator={false}
-            ListHeaderComponent={<Text style={styles.text}>Sure boi</Text>}
+            ListHeaderComponent={<HomeHeader />}
             // ListHeaderComponentStyle={{height: 30, backgroundColor: 'red'}}
           />
         </View>
@@ -56,8 +56,6 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // alignItems: "center",
-    // justifyContent: "center",
     // marginTop: StatusBar.currentHeight || 0
   },
   text: {

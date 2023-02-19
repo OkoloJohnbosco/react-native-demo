@@ -2,7 +2,7 @@ import { Image, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { COLORS } from "../constants";
 
-const CircleButton = ({ imgUrl }) => {
+const CircleButton = ({ imgUrl, handlePress, ...props }) => {
   return (
     <TouchableOpacity
     style={{
@@ -15,8 +15,10 @@ const CircleButton = ({ imgUrl }) => {
         position: "absolute",
         top: 7,
         right: 7,
-        zIndex: 3
+        zIndex: 3,
+        ...props
     }}
+    onPress={handlePress}
     >
       <Image
         source={imgUrl}

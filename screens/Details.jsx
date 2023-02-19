@@ -13,6 +13,8 @@ import CircleButton from "../components/circle-button";
 import NFTTitle, { ETHPrice, ReactBtn } from "../components/nft-title";
 import DetailsBid from "../components/details-bid";
 import DetailsDesc from "../components/details-desc";
+import DetailsHeader from "../components/details-header";
+import SubInfo from "../components/sub-info";
 
 const Details = ({ navigation, route }) => {
   const { props } = route.params;
@@ -46,13 +48,25 @@ const Details = ({ navigation, route }) => {
         {/* <DetailsBid />
         <DetailsDesc /> */}
       </View>
-      <View>
-        <FlatList
-          data={props.bids}
-          renderItem={({ item }) => <DetailsBid bid={item} />}
-          keyExtractor={(item) => item.id}
-        />
-      </View>
+      <FlatList
+        data={props.bids}
+        renderItem={({ item }) => <DetailsBid bid={item} />}
+        keyExtractor={(item) => item.id}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          paddingBottom: SIZES.extraLarge,
+          flex: 1,
+        }}
+        ListHeaderComponent={
+          <>
+            <DetailsHeader data={props} navigation={navigation} />
+            <SubInfo />
+            <View style={{padding: SIZES.font}}>
+              <DetailsDesc data={props} />
+            </View>
+          </>
+        }
+      />
     </SafeAreaView>
   );
 };

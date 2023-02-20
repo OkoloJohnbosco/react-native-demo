@@ -3,13 +3,11 @@ import {
   Text,
   View,
   SafeAreaView,
-  Image,
   FlatList,
 } from "react-native";
 import React from "react";
 import FocusedStatusBar from "../components/focused-status-bar";
-import { COLORS, SHADOWS, SIZES } from "../constants";
-import CircleButton from "../components/circle-button";
+import { COLORS, FONTS, SHADOWS, SIZES } from "../constants";
 import NFTTitle, { ETHPrice, ReactBtn } from "../components/nft-title";
 import DetailsBid from "../components/details-bid";
 import DetailsDesc from "../components/details-desc";
@@ -45,8 +43,6 @@ const Details = ({ navigation, route }) => {
           fontSize={SIZES.font}
           {...SHADOWS.dark}
         />
-        {/* <DetailsBid />
-        <DetailsDesc /> */}
       </View>
       <FlatList
         data={props.bids}
@@ -63,6 +59,15 @@ const Details = ({ navigation, route }) => {
             <SubInfo />
             <View style={{padding: SIZES.font}}>
               <DetailsDesc data={props} />
+              {props.bids.length > 0 && (
+                <Text style={{
+                  fontSize: SIZES.font,
+                  fontFamily: FONTS.semiBold,
+                  color: COLORS.primary
+                }}>
+                  Current Bid
+                </Text>
+              )}
             </View>
           </>
         }

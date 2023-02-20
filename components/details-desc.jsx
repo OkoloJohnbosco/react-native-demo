@@ -4,7 +4,8 @@ import { COLORS, FONTS, SIZES } from "../constants";
 import NFTTitle, { ETHPrice, ReactBtn } from "./nft-title";
 
 function DetailsDesc({ data }) {
-  console.log(data);
+  const [readMore, setReadMore] = useState(false);
+  
   return (
     <>
       <View
@@ -23,17 +24,40 @@ function DetailsDesc({ data }) {
         />
         <ETHPrice price={data.price} />
       </View>
-      <View style={{ marginVertical: SIZES.extraLarge * 1 }}>
+      <View style={{ marginVertical: SIZES.extraLarge * 1.2 }}>
         <Text
           style={{
             fontSize: SIZES.font,
             fontFamily: FONTS.semiBold,
             color: COLORS.primary,
-            opacity: 0.9,
           }}
         >
-          {data.description}
+          Description
         </Text>
+        <View style={{ marginTop: SIZES.base }}>
+          <Text
+            style={{
+              fontSize: SIZES.small,
+              fontFamily: FONTS.regular,
+              color: COLORS.secondary,
+              lineHeight: SIZES.large,
+            }}
+          >
+            {!readMore
+              ? data.description.slice(0, 300) + "...."
+              : data.description}
+            <Text
+              style={{
+                fontSize: SIZES.small,
+                fontFamily: FONTS.semiBold,
+                color: COLORS.primary,
+              }}
+              onPress={() => setReadMore((prev) => !prev)}
+            >
+              {readMore ? "Show Less" : "Read More"}
+            </Text>
+          </Text>
+        </View>
       </View>
     </>
   );

@@ -1,10 +1,4 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  FlatList,
-} from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, FlatList, ScrollView } from "react-native";
 import React from "react";
 import FocusedStatusBar from "../components/focused-status-bar";
 import { COLORS, FONTS, SHADOWS, SIZES } from "../constants";
@@ -33,12 +27,12 @@ const Details = ({ navigation, route }) => {
           justifyContent: "center",
           alignItems: "center",
           paddingHorizontal: 2,
-          backgroundColor: "rgba(0,0,0,0.1)",
+          backgroundColor: "rgba(255,255,255,0.5)",
           zIndex: 1,
         }}
       >
         <ReactBtn
-          width="100%"
+        width="100%"
           minW={170}
           fontSize={SIZES.font}
           {...SHADOWS.dark}
@@ -48,34 +42,36 @@ const Details = ({ navigation, route }) => {
         data={props.bids}
         renderItem={({ item }) => <DetailsBid bid={item} />}
         keyExtractor={(item) => item.id}
-        showsVerticalScrollIndicator={false}
+        showsVerticalScrollIndicator={true}
         contentContainerStyle={{
           paddingBottom: SIZES.extraLarge,
           flex: 1,
         }}
-        ListHeaderComponent={
+        ListHeaderComponent={() => (
           <>
             <DetailsHeader data={props} navigation={navigation} />
             <SubInfo />
-            <View style={{padding: SIZES.font}}>
+            <View style={{ padding: SIZES.font }}>
               <DetailsDesc data={props} />
               {props.bids.length > 0 && (
-                <Text style={{
-                  fontSize: SIZES.font,
-                  fontFamily: FONTS.semiBold,
-                  color: COLORS.primary
-                }}>
+                <Text
+                  style={{
+                    fontSize: SIZES.font,
+                    fontFamily: FONTS.semiBold,
+                    color: COLORS.primary,
+                  }}
+                >
                   Current Bid
                 </Text>
               )}
             </View>
           </>
-        }
+        )}
       />
+          
     </SafeAreaView>
   );
 };
 
 export default Details;
 
-const styles = StyleSheet.create({});

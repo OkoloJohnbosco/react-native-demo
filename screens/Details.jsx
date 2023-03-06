@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, FlatList, ScrollView } from "react-native";
+import { Text, View, SafeAreaView, FlatList, Platform, ScrollView } from "react-native";
 import React from "react";
 import FocusedStatusBar from "../components/focused-status-bar";
 import { COLORS, FONTS, SHADOWS, SIZES } from "../constants";
@@ -10,7 +10,7 @@ import SubInfo from "../components/sub-info";
 
 const Details = ({ navigation, route }) => {
   const { props } = route.params;
-
+  console.log(Platform)
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
       <FocusedStatusBar
@@ -22,11 +22,11 @@ const Details = ({ navigation, route }) => {
         style={{
           width: "100%",
           position: "absolute",
-          bottom: 0,
+          bottom: 10,
           paddingVertical: SIZES.font,
           justifyContent: "center",
           alignItems: "center",
-          paddingHorizontal: 2,
+          paddingHorizontal: 30,
           backgroundColor: "rgba(255,255,255,0.5)",
           zIndex: 1,
         }}
@@ -38,13 +38,16 @@ const Details = ({ navigation, route }) => {
           {...SHADOWS.dark}
         />
       </View>
+      <ScrollView 
+        contentInsetAdjustmentBehavior="automatic"
+      >
       <FlatList
         data={props.bids}
         renderItem={({ item }) => <DetailsBid bid={item} />}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={true}
         contentContainerStyle={{
-          paddingBottom: SIZES.extraLarge,
+          paddingBottom: 34,
           flex: 1,
         }}
         ListHeaderComponent={() => (
@@ -61,13 +64,15 @@ const Details = ({ navigation, route }) => {
                     color: COLORS.primary,
                   }}
                 >
-                  Current Bid
+                  Current Bid on {Platform.OS}
                 </Text>
               )}
             </View>
           </>
         )}
       />
+      </ScrollView>
+
           
     </SafeAreaView>
   );

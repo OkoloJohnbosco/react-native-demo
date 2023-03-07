@@ -1,6 +1,6 @@
 import { View, Text, Image, TextInput } from "react-native";
 import React from "react";
-import { COLORS, SHADOWS, SIZES, assets, FONTS } from "../constants";
+import { COLORS, SIZES, assets, FONTS } from "../constants";
 
 const HomeHeader = ({onSearch}) => {
   return (
@@ -81,7 +81,8 @@ const HomeHeader = ({onSearch}) => {
             borderRadius: 4,
             backgroundColor: COLORS.secondary,
             paddingHorizontal: SIZES.font / 2,
-            paddingVertical: SIZES.small - 2
+            paddingVertical: SIZES.small - 2,
+            alignItems: "center"
           }}
         >
           <Image
@@ -95,7 +96,8 @@ const HomeHeader = ({onSearch}) => {
           />
           <TextInput
             placeholder="Search NFT"
-            style={{ color: COLORS.white, flex: 1, border: 0, outline: "none" }}
+            placeholderTextColor="white"
+            style={{ color: COLORS.white, flex: 1, border: 0, outline: "none", fontFamily: FONTS.regular }}
             onChangeText={onSearch}
           />
         </View>

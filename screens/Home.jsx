@@ -12,17 +12,33 @@ import NFTCard from "../components/nft-card";
 import HomeHeader from "../components/home-header";
 
 const Home = () => {
+  const [nftData, setNftData] = React.useState(NFTData)
+
+  const handleSearch = (value) => {
+    if(!value.length) return;
+
+    const filteredData = NFTData.filter(item => (
+      item.name.toLowerCase().includes(value.toLowerCase())
+    ))
+
+    if(filteredData.length) {
+      setNftData(filteredData)
+    }else {
+      setNftData(NFTData)
+    }
+  }
+  
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <FocusedStatusBar backgroundColor={COLORS.primary} />
       <View style={styles.container}>
         <View style={{ zIndex: 0, paddingHorizontal: 6  }}>
           <FlatList
-            data={NFTData}
+            data={nftData}
             renderItem={({ item }) => <NFTCard {...item} />}
             keyExtractor={(item) => item.id}
             showsVerticalScrollIndicator={false}
-            ListHeaderComponent={<HomeHeader />}
+            ListHeaderComponent={<HomeHeader onSearch={handleSearch} />}
             // ListHeaderComponentStyle={{height: 30, backgroundColor: 'red'}}
           />
         </View>
